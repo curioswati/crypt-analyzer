@@ -23,7 +23,9 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
 
-    {% block css %}{% endblock %}
+    {% block css %}
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    {% endblock %}
 
     {% block nvd3 %}{% endblock %}
 
@@ -45,7 +47,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             {% block home_link %}<li>{% endblock %}<a href="{% url 'base:index' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-            {% block contact_link %}<li>{% endblock %}<a href="{% url 'base:contact' %}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contact</a></li>
+            {#% block contact_link %}<li>{% endblock %#}<!--a href="{#% url 'base:contact' %#}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contact</a></li-->
+            {% block contact_link %}<li>{% endblock %}<a href="https://github.com/curioswati/crypt-analyzer/issues" target="_blank"><span class="fa fa-github" aria-hidden="true"></span> Facing issues?</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
