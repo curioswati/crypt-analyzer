@@ -137,3 +137,17 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = 'uploads'
 MEDIA_URL = '/uploads/'
+
+# Email Settings
+
+NOTIFICATIONS_TO = os.environ.get('CRYPTANALYZER_NOTIFICAIONS_MAIL_TO')
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = NOTIFICATIONS_TO
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_SUBJECT = 'New contact form submission at Cryptanalyzer.'

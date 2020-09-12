@@ -1,9 +1,12 @@
+from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, render_to_response
 from django.views import generic
 
-from .forms import UploadFileForm, SelectAlgorithmForm
+from cryptanalyzer import settings
+
+from .forms import ContactForm, SelectAlgorithmForm, UploadFileForm
 from .utils import analyzer, utils
 
 
@@ -11,8 +14,26 @@ class IndexView(generic.TemplateView):
     template_name = "index.html"
 
 
-class ContactView(generic.TemplateView):
-    template_name = "index.html"
+def ContactView(request):
+    # Ref: https://hellowebbooks.com/news/tutorial-setting-up-a-contact-form-with-django/
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            contact_email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            email = EmailMessage(settings.EMAIL_SUBJECT,
+                                 message,
+                                 settings.DEFAULT_FROM_EMAIL,
+                                 [settings.NOTIFICATIONS_TO],
+                                 headers = {'Reply-To': contact_email})
+            email.send()
+
+            return JsonResponse({})
+    else:
+        form = ContactForm()
+
+    return render(request, "contact.html", {'form': form})
 
 
 def SelectAlgorithm(request, analysis_type, varying):

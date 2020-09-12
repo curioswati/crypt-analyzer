@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block contact_link %}<li class="active">{% endblock %}
+{% block content %}
+<h1>Contact Us</h1>
+<form method="post" id="contact-form">
+    {% csrf_token %}
+
+    <!-- Ref: https://www.w3schools.com/bootstrap/bootstrap_alerts.asp-->
+    <div id="submission-alert" class="alert alert-info alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Thanks for contacting. We will get back to you shortly.
+    </div>
+
+    {{ form.as_p }}
+    <div class="form-actions">
+      <button type="submit">Send</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block js%}
+<script src="{% static 'js/contact.js' %}"></script>
+{% endblock %}
+
+<!-- Ref: https://learndjango.com/tutorials/django-email-contact-form -->
