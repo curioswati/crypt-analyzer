@@ -1,1 +1,1 @@
-web: gunicorn cryptanalyzer.wsgi:application
+web: sh -c 'cd cryptanalyzer && gunicorn cryptanalyzer.wsgi:application'
