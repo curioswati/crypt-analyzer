@@ -25,7 +25,7 @@ SECRET_KEY = 'cryptl@lnt%vlj9*9f#+cu+di(b$%%z^++d#gwyw54s_7nl8o__o4a%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cryptanalyzer.herokuapp.com']
 
 
 # Application definition
